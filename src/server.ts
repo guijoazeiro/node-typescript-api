@@ -24,7 +24,7 @@ export class SetupServer extends Server {
 
   private setupControllers(): void {
     const forecastController = new ForecastController();
-    const beachesController = new BeachesController()
+    const beachesController = new BeachesController();
     this.addControllers([forecastController, beachesController]);
   }
 
@@ -40,9 +40,9 @@ export class SetupServer extends Server {
     await database.close();
   }
 
-  public start(): void{
-    this.app.listen(this.port, () =>{
-      console.info('Server listening of port: ', this.port)
-    })
+  public start(): void {
+    this.app.listen(this.port, () => {
+      console.info('Server listening of port: ', this.port);
+    });
   }
 }
