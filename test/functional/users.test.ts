@@ -1,4 +1,4 @@
-import { User } from "@src/models/user";
+import { User } from '@src/models/user';
 
 describe('Users functional test', () => {
   beforeEach(async () => {
