@@ -1,4 +1,5 @@
-import { User, comparePassword } from '@src/models/user';
+import { User} from '@src/models/user';
+import AuthService from '@src/services/auth';
 
 describe('Users functional test', () => {
   beforeEach(async () => {
@@ -15,7 +16,7 @@ describe('Users functional test', () => {
       const response = await global.testRequest.post('/users').send(newUser);
       expect(response.status).toBe(201);
       await expect(
-        comparePassword(newUser.password, response.body.password)
+        AuthService.comparePasswords(newUser.password, response.body.password)
       ).resolves.toBeTruthy();
       expect(response.body).toEqual(
         expect.objectContaining({
