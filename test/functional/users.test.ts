@@ -1,10 +1,11 @@
-import { User} from '@src/models/user';
+import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
 
 describe('Users functional test', () => {
   beforeEach(async () => {
     await User.deleteMany({});
   });
+
   describe('When creating a new user', () => {
     it('should successfully create a new user with encrypted password', async () => {
       const newUser = {
@@ -53,6 +54,26 @@ describe('Users functional test', () => {
         code: 409,
         error: 'User validation failed: email: already exists in the database.',
       });
+    });
+  });
+
+  describe('When authenticating a user', () => {
+    it.only('should generate a token for a valid user', async () => {
+      const newUser = {
+        name: 'John Doe',
+        email: 'john@mail.com',
+        password: '1234',
+      };
+      await new User(newUser).save();
+      const response = await global.testRequest
+        .post('/users/authenticate')
+        .send({ email: newUser.email, password: newUser.password });
+        console.log(response.body);
+        
+      expect(response.body).toEqual(
+        expect.objectContaining({ token: expect.any(String) })
+        
+      );
     });
   });
 });
