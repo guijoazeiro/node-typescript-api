@@ -9,12 +9,12 @@ describe('Auth middleware', () => {
         'x-access-token': jwtToken,
       },
     };
-    const resFake = {}
-    const nextFake = jest.fn()
+    const resFake = {};
+    const nextFake = jest.fn();
     authMiddleware(reqFake, resFake, nextFake);
     expect(nextFake).toHaveBeenCalled();
   });
-  
+
   it('should return UNAUTHORIZED if there is a problem on the token verification', () => {
     const reqFake = {
       headers: {
