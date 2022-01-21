@@ -1,8 +1,19 @@
 import { SetupServer } from './server';
 import config from 'config';
+import logger from './logger';
+
+enum ExitStatus {
+  Failure = 1,
+  Success = 0,
+}
 
 (async (): Promise<void> => {
-  const server = new SetupServer(config.get('App.port'));
-  await server.init();
-  server.start();
+  try {
+    const server = new SetupServer(config.get('App.port'));
+    await server.init();
+    server.start();
+  } catch (error) {
+    logger.error(`App exited with error ${error}`);
+    process.exit(ExitStatus.Failure);
+  }
 })();
