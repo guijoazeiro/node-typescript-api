@@ -119,7 +119,7 @@ describe('Users functional tests', () => {
         name: 'John Doe',
         email: 'john@mail.com',
         password: '1234',
-      };      
+      };
       const user = new User(newUser);
       const token = AuthService.generateToken(user.toJSON());
       const { body, status } = await global.testRequest

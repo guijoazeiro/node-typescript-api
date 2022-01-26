@@ -10,17 +10,17 @@ describe('Rating Service', () => {
     user: 'some-user',
   };
 
-  const defaultRating = new Rating()
+  const defaultRating = new Rating();
 
-  describe('Calculate rating for a given point', ()=>{})
+  describe('Calculate rating for a given point', () => {});
 
-  describe('Get rating based on wind ande wave position', ()=>{
-      it('Should get rating 1 for a beach with onshore winds', ()=>{
-        const rating = defaultRating.getRatingBasedOnWindAndWavePositions(
-            BeachPosition.E,
-            BeachPosition.E
-        )
-        expect(rating).toBe(1)
-      })
-  })
+  describe('Get rating based on wind ande wave position', () => {
+    it('Should get rating 1 for a beach with onshore winds', () => {
+      const rating = defaultRating.getRatingBasedOnWindAndWavePositions(
+        BeachPosition.E,
+        BeachPosition.E
+      );
+      expect(rating).toBe(1);
+    });
+  });
 });
