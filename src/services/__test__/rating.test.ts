@@ -10,7 +10,7 @@ describe('Rating Service', () => {
     user: 'some-user',
   };
 
-  const defaultRating = new Rating();
+  const defaultRating = new Rating(defaultBeach);
 
   describe('Calculate rating for a given point', () => {});
 
@@ -28,6 +28,13 @@ describe('Rating Service', () => {
         BeachPosition.S
       );
       expect(rating).toBe(3);
+    });
+    it('should get rating 5 for a beach with offshore winds', () => {
+      const rating = defaultRating.getRatingBasedOnWindAndWavePositions(
+        BeachPosition.E,
+        BeachPosition.W
+      );
+      expect(rating).toBe(5);
     });
   });
 });
