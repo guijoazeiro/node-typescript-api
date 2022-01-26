@@ -22,5 +22,12 @@ describe('Rating Service', () => {
       );
       expect(rating).toBe(1);
     });
+    it('should get rating 3 for a beach with cross winds', () => {
+      const rating = defaultRating.getRatingBasedOnWindAndWavePositions(
+        BeachPosition.E,
+        BeachPosition.S
+      );
+      expect(rating).toBe(3);
+    });
   });
 });
