@@ -26,7 +26,7 @@ describe('Beach forecast functional tests', () => {
     await new Beach(defaultBeach).save();
     token = AuthService.generateToken(user.toJSON());
   });
-  
+
   it('should return a forecast with just a few times', async () => {
     nock('https://api.stormglass.io:443', {
       encodedQueryParams: true,
@@ -47,7 +47,7 @@ describe('Beach forecast functional tests', () => {
     const { body, status } = await global.testRequest
       .get('/forecast')
       .set({ 'x-access-token': token });
-    expect(status).toBe(200);   
+    expect(status).toBe(200);
     expect(body).toEqual(apiForecastResponse1BeachFixture);
   });
 
