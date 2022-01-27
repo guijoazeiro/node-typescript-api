@@ -24,10 +24,82 @@ describe('Rating Service', () => {
       windSpeed: 100,
     };
 
-    it('should get a rating less than 1 for a poor point', () =>{
+    it('should get a rating less than 1 for a poor point', () => {
       const rating = defaultRating.getRateForPoint(defaultPoint);
       expect(rating).toBe(1);
-    })
+    });
+    it('should get a rating of 1 for an ok point', () => {
+      const pointData = {
+        swellHeight: 0.4,
+      };
+      const point = { ...defaultPoint, ...pointData };
+
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(1);
+    });
+
+    it('should get a rating of 3 for a point with offshore winds and a half overhead height', () => {
+      const point = {
+        ...defaultPoint,
+        ...{
+          swellHeight: 0.7,
+          windDirection: 250,
+        },
+      };
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(3);
+    });
+
+    it('should get a rating of 4 for a point with offshore winds, half overhead high swell and good interval', () => {
+      const point = {
+        ...defaultPoint,
+        ...{
+          swellHeight: 0.7,
+          swellPeriod: 12,
+          windDirection: 250,
+        },
+      };
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(4);
+    });
+
+    it('should get a rating of 4 for a point with offshore winds, shoulder high swell and good interval', () => {
+      const point = {
+        ...defaultPoint,
+        ...{
+          swellHeight: 1.5,
+          swellPeriod: 12,
+          windDirection: 250,
+        },
+      };
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(4);
+    });
+
+    it('should get a rating of 5 classic day!', () => {
+      const point = {
+        ...defaultPoint,
+        ...{
+          swellHeight: 2.5,
+          swellPeriod: 16,
+          windDirection: 250,
+        },
+      };
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(5);
+    });
+    it('should get a rating of 4 a good condition but with crossshore winds', () => {
+      const point = {
+        ...defaultPoint,
+        ...{
+          swellHeight: 2.5,
+          swellPeriod: 16,
+          windDirection: 130,
+        },
+      };
+      const rating = defaultRating.getRateForPoint(point);
+      expect(rating).toBe(4);
+    });
   });
 
   describe('Get rating based on wind ande wave position', () => {
