@@ -5,7 +5,7 @@ import apiForecastResponse1BeachFixture from '../fixtures/api_forecast_response_
 import { User } from '@src/models/user';
 import AuthService from '@src/services/auth';
 
-describe('Beach forecast functional test', () => {
+describe('Beach forecast functional tests', () => {
   const defaultUser: User = {
     name: 'John Doe',
     email: 'john3@mail.com',
@@ -26,7 +26,7 @@ describe('Beach forecast functional test', () => {
     await new Beach(defaultBeach).save();
     token = AuthService.generateToken(user.toJSON());
   });
-
+  
   it('should return a forecast with just a few times', async () => {
     nock('https://api.stormglass.io:443', {
       encodedQueryParams: true,
@@ -47,7 +47,7 @@ describe('Beach forecast functional test', () => {
     const { body, status } = await global.testRequest
       .get('/forecast')
       .set({ 'x-access-token': token });
-    expect(status).toBe(200);
+    expect(status).toBe(200);   
     expect(body).toEqual(apiForecastResponse1BeachFixture);
   });
 
