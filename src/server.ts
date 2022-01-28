@@ -11,6 +11,8 @@ import expressPino from 'express-pino-logger';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import apiSchema from './api-schema.json';
+import { OpenApiValidator } from 'express-openapi-validator';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 
 export class SetupServer extends Server {
   constructor(private port = 3000) {
@@ -51,6 +53,11 @@ export class SetupServer extends Server {
 
   private async docSetup(): Promise<void> {
     this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    await new OpenApiValidator({
+      apiSpec: apiSchema as OpenAPIV3.Document,
+      validateRequests: true,
+      validateResponses: true,
+    }).install(this.app);
   }
 
   public getApp(): Application {
