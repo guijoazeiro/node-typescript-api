@@ -9,6 +9,8 @@ import { UsersController } from './controller/user';
 import logger from './logger';
 import expressPino from 'express-pino-logger';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import apiSchema from './api-schema.json';
 
 export class SetupServer extends Server {
   constructor(private port = 3000) {
@@ -17,6 +19,7 @@ export class SetupServer extends Server {
 
   public async init(): Promise<void> {
     this.setupExpress();
+    await this.docSetup();
     this.setupControllers();
     await this.databaseSetup();
   }
@@ -44,6 +47,10 @@ export class SetupServer extends Server {
       beachesController,
       usersController,
     ]);
+  }
+
+  private async docSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
   }
 
   public getApp(): Application {
