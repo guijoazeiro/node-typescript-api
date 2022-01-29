@@ -672,6 +672,13 @@
     "@types/pino" "6.3"
     "@types/pino-http" "*"
 
+"@types/express-rate-limit@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@types/express-rate-limit/-/express-rate-limit-6.0.0.tgz#11a314477895a8a888958f27650ed0d1ddad01b0"
+  integrity sha512-nZxo3nwU20EkTl/f2eGdndQkDIJYwkXIX4S3Vrp2jMdSdFJ6AWtIda8gOz0wiMuOFoeH/UUlCAiacz3x3eWNFA==
+  dependencies:
+    express-rate-limit "*"
+
 "@types/express-serve-static-core@^4.17.18":
   version "4.17.24"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.17.24.tgz#ea41f93bf7e0d59cd5a76665068ed6aab6815c07"
@@ -2026,6 +2033,11 @@ express-pino-logger@^7.0.0:
   integrity sha512-g8T6nhqq9L9AuwppymXa1rm6+A7xVUfkcEodXA+d2ILsM1uyoqSn83kpXE61v6JR2eFL8n878VyFDir1w2PuPw==
   dependencies:
     pino-http "^6.0.0"
+
+express-rate-limit@*, express-rate-limit@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/express-rate-limit/-/express-rate-limit-6.2.0.tgz#be644be082d4d5da8c368aed07cef80152f6e218"
+  integrity sha512-q9xfttbPX79HiBsHA4LT3PZEeJR96CJ5/2jloAKSEECMx8XlOOOpjxx6iK/kBw3hFJ8uhx6Q9lCfSGp70yV0tQ==
 
 express@^4.16.3, express@^4.17.1:
   version "4.17.1"
