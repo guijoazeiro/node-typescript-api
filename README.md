@@ -13,7 +13,7 @@ Esta aplicação tem como objetivo calcular a melhor confição de surf usando a
 
 ## 📝 Documentação
 
-[Forecast Docs](https://forecast-api1.herokuapp.com/)
+[Forecast Docs](https://forecast-api1.herokuapp.com/docs)
 
 ## ▶ Instalação:
 
